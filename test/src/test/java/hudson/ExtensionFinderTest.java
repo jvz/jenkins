@@ -92,7 +92,8 @@ public class ExtensionFinderTest extends HudsonTestCase {
     @Extension
     public static class ModuleImpl extends AbstractModule {
         protected void configure() {
-            if (TestEnvironment.get().testCase instanceof ExtensionFinderTest) {
+            final TestEnvironment env = TestEnvironment.get();
+            if (env != null && env.testCase instanceof ExtensionFinderTest) {
                 bind(String.class).annotatedWith(LionKing.class).toInstance("lion king");
             }
         }
